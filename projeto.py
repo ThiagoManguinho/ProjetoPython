@@ -16,3 +16,21 @@ for t in range(qnt):
     categoria = input(f'Digite qual a categoria do livro {livro}: ').title()
     valor = float(input(f'Digite o valor que {livro} foi adquirido: R$'))
     print()
+
+    #ADICIONANDO À LISTA
+    todoslivros['Livros'].append(livro)
+    livros_autores[livro] = autor
+
+    #VERIFICANDO SE A CATEGORIA EXISTE
+    if categoria in livros_categorias:
+        livros_categorias[categoria].append(livro)
+    else:
+        livros_categorias[categoria] = [livro]
+
+print('-=' * 50)
+
+print()
+print(todoslivros)
+print(livros_autores)
+print(livros_categorias)
+print()
