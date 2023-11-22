@@ -1,30 +1,7 @@
 import os 
 os.system('cls')
 
-def salvar_para_arquivo():
-    with open('livros.txt', 'w') as arquivo:
-        for livro in livros:
-            linha = f"{livro['nome']},{livro['autor']},{livro['categoria']},{livro['custo']}\n"
-            arquivo.write(linha)
-
-def carregar_do_arquivo():
-    livros_carregados = []
-    if os.path.exists('livros.txt'):
-        with open('livros.txt', 'r') as arquivo:
-            for linha in arquivo:
-                dados = linha.strip().split(',')
-                livro = {
-                    'nome': dados[0],
-                    'autor': dados[1],
-                    'categoria': dados[2],
-                    'custo': float(dados[3])
-                }
-                livros_carregados.append(livro)
-    return livros_carregados
-
-os.system('cls')
-
-livros = carregar_do_arquivo()
+livros = []  # Lista vazia para armazenar informações sobre os livros
 
 def visualizar_livros():
     if not livros:
@@ -36,33 +13,33 @@ def visualizar_livros():
     print()
 
 def atualizar_livro():
-    visualizar_livros()
+    visualizar_livros()  # Chama a função para exibir os livros antes de atualizar
 
     try:
-        nome_livro = input('Digite o nome do livro que deseja atualizar: ')
-        livro_encontrado = next((livro for livro in livros if livro["nome"] == nome_livro), None)
+        nome_livro = input('Digite o nome do livro que deseja atualizar: ')  # Solicita o nome do livro que o usuário deseja atualizar
+        livro_encontrado = next((livro for livro in livros if livro["nome"] == nome_livro), None)  # Encontra o livro com o nome fornecido
 
         if not livro_encontrado:
-            print(f'Livro com o nome "{nome_livro}" não encontrado.\n')
+            print(f'Livro com o nome "{nome_livro}" não encontrado.\n')  # Se o livro não for encontrado, exibe uma mensagem
             return
 
+        # Exibe informações sobre o livro encontrado
         print(f'Livro encontrado: Nome: {livro_encontrado["nome"]}, Autor: {livro_encontrado["autor"]}, Categoria: {livro_encontrado["categoria"]}, Custo: R${livro_encontrado["custo"]:.2f}')
 
+        # Solicita ao usuário novas informações sobre o livro
         livro_encontrado["nome"] = input('Novo nome do livro (ou pressione Enter para manter o mesmo): ')
         livro_encontrado["autor"] = input('Novo autor do livro (ou pressione Enter para manter o mesmo): ')
         livro_encontrado["categoria"] = input('Nova categoria do livro (ou pressione Enter para manter a mesma): ')
         novo_custo = input('Novo custo do livro (ou pressione Enter para manter o mesmo): ')
 
+        # Atualiza o custo apenas se o usuário fornecer um novo custo
         if novo_custo:
             livro_encontrado["custo"] = float(novo_custo)
 
-        salvar_para_arquivo()  # Salva as alterações no arquivo após a atualização
-
-        print('Livro atualizado com sucesso!\n')
+        print('Livro atualizado com sucesso!\n')  # Exibe uma mensagem de sucesso após a atualização
 
     except Exception as e:
-        print(f'Ocorreu um erro: {e}\n')
+        print(f'Ocorreu um erro: {e}\n')  # Lida com exceções e exibe uma mensagem de erro
 
 # Exemplo de uso
-atualizar_livro()
-Esta versão usa apenas as funções na
+atualizar_livro()  # Chama a função para atualizar um livro
