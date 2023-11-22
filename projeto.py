@@ -42,4 +42,4 @@ def atualizar_livro():
         print(f'Ocorreu um erro: {e}\n')  # Lida com exceções e exibe uma mensagem de erro
 
 # Exemplo de uso
-atualizar_livro()  # Chama a função para atualizar um livro
+atualizar_livro()   # Chama a função para atualizar um livro
