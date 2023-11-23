@@ -1,4 +1,3 @@
-import time
 import os
 os.system('cls')
 
@@ -217,4 +216,3 @@ while True:
     else:
         #digitou um número maior que as opições
         print('Digite um número com que tenha uma função\n')
-        time.sleep(2)
